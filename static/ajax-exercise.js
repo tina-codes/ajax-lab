@@ -37,6 +37,21 @@ document.querySelector('#weather-form').addEventListener('submit', showWeather);
 function orderMelons(evt) {
   evt.preventDefault();
 
+  const formInputs = {
+    melonType: document.querySelector('#melon_type').value,
+    qty: document.querySelector('#qty').value,
+  };
+  fetch('/order-melons.json',{
+    method: 'POST',
+    body: JSON.stringify(formInputs),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((responseJSON) => {
+      document.querySelector('#order-status').innerHTML = `${result_text}`;
+    })
   // TODO: show the result message after your form
   // TODO: if the result code is ERROR, make it show up in red (see our CSS!)
 }
