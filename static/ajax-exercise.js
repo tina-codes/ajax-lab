@@ -51,8 +51,12 @@ function orderMelons(evt) {
     .then((response) => response.json())
     .then((responseJSON) => {
       document.querySelector('#order-status').innerHTML = `${responseJSON.msg}`;
-    })
+      
+      
+        if (responseJSON.code === 'ERROR') {document.querySelector('#order-status').classList.add('order-error');
+    };
   // TODO: show the result message after your form
   // TODO: if the result code is ERROR, make it show up in red (see our CSS!)
-}
+  
+})}
 document.querySelector('#order-form').addEventListener('submit', orderMelons);
