@@ -50,7 +50,7 @@ function orderMelons(evt) {
   })
     .then((response) => response.json())
     .then((responseJSON) => {
-      document.querySelector('#order-status').innerHTML = `${responseJSON.msg}`;
+      document.querySelector('#order-status').innerHTML = responseJSON.msg;
       
       
         if (responseJSON.code === 'ERROR') {document.querySelector('#order-status').classList.add('order-error');
@@ -60,3 +60,13 @@ function orderMelons(evt) {
   
 })}
 document.querySelector('#order-form').addEventListener('submit', orderMelons);
+
+function showDogs(evt) {
+  fetch('https://dog.ceo/api/breeds/image/random')
+  .then((response) => response.json())
+  .then((result) => {
+    const imageURL = result.message;
+    document.querySelector('#dog-image').insertAdjacentHTML('beforeend', `<div><img src=${result.message}></div>`)
+  })
+}
+document.querySelector('#dog-image').addEventListener('click', showDogs);
